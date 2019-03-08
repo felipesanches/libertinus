@@ -22,14 +22,15 @@ NULL=
 MFONTS=Sans-Regular \
        Sans-Bold \
        Sans-Italic \
-       Serif-Regular \
-       Serif-Semibold \
-       Serif-Bold \
-       Serif-Italic \
-       Serif-SemiboldItalic \
-       Serif-BoldItalic \
-       SerifDisplay-Regular \
        $(NULL)
+#       Serif-Regular \
+#       Serif-Semibold \
+#       Serif-Bold \
+#       Serif-Italic \
+#       Serif-SemiboldItalic \
+#       Serif-BoldItalic \
+#       SerifDisplay-Regular \
+#       $(NULL)
 
 OFONTS=Math-Regular \
        SerifInitials-Regular \
@@ -37,8 +38,8 @@ OFONTS=Math-Regular \
        Keyboard-Regular \
        $(NULL)
 
-FONTS=$(MFONTS) \
-      $(OFONTS)
+FONTS=$(MFONTS)# \
+#      $(OFONTS)
 
 SFD=$(FONTS:%=$(SRC)/$(NAME)%.sfd)
 MNRM=$(MFONTS:%=$(SRC)/$(NAME)%.nrm)
