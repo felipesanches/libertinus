@@ -5,16 +5,17 @@ python:
   - "3.6"
 
 install:
-  - sudo apt-get install libgif4
   - pip install fonttools
   - pip install https://github.com/doconce/preprocess/archive/master.zip
   - pip install fontbakery
-  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/gh-pages/fforge.tar.gz
+  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/e523e431b41e1a10a74d2d952d00dcfa43d50dd3/fforge.tar.gz
+  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/e523e431b41e1a10a74d2d952d00dcfa43d50dd3/libs.tar.gz
   - tar xvzf fforge.tar.gz
-  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/gh-pages/local_lib.tar.gz
-  - tar xvzf local_lib.tar.gz
-  - sudo mkdir -p /usr/lib
-  - sudo mv local_lib/* /usr/lib/
+  - sudo mv libs.tar.gz /
+  - pushd /
+  - sudo tar xvzf libs.tar.gz
+  - popd
+  - sudo mv /usr/lib/fforge/* /usr/lib/
 
 script:
   - export PYTHONPATH=/usr/lib/python3.6/site-packages
