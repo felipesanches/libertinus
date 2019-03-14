@@ -1,19 +1,18 @@
 sudo: false
-dist: trusty
-language: python
-python:
-  - "3.6"
+dist: xenial
 
 install:
-  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/ef44a71900da5eeef7a83cc4610027b860ef1903/libs.tar.gz
-  - sudo tar xvzf libs.tar.gz
-  - sudo cp home/travis/fforge_libs/* /usr -Rf
+  - sudo apt-get install python3.6-dev
+  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/6587b0c40d56685ee286b7ee0f25ffa7141a1cf5/fforge_with_py36.tar.gz
+  - sudo tar xvzf fforge_with_py36.tar.gz
+  - sudo cp home/travis/fforge_stuff/* /usr -Rf
   - pip install fonttools
   - pip install https://github.com/doconce/preprocess/archive/master.zip
   - pip install fontbakery
 
 script:
   - export PYTHONPATH=/usr/lib/python3.6/site-packages
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/python3.6
   - make otf
   - make check
   - export DISABLE=" -x com.google.fonts/check/035" # ftxvalidator
