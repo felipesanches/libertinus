@@ -9,7 +9,7 @@ GSUB=$(FEADIR)/gsub.fea
 DOC=documentation
 TOOLS=tools
 
-PY?=fontforgeexe/fontforge -lang py -script
+PY?=fontforge -lang py -script
 PREPROP?=preprocess
 BUILD=$(TOOLS)/build.py
 LOADFEAT=$(TOOLS)/load-features.py
