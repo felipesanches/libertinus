@@ -3,24 +3,21 @@ dist: trusty
 language: python
 python:
   - "3.6"
-#virtualenv:
-#  system_site_packages: true
-
-addons:
-  apt:
-    sources:
-      - sourceline: 'ppa:fontforge/fontforge'
-    packages:
-      - fontforge
-#      - python-fontforge
 
 install:
+  - sudo apt-get install libgif4
   - pip install fonttools
   - pip install https://github.com/doconce/preprocess/archive/master.zip
   - pip install fontbakery
+  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/gh-pages/fforge.tar.gz
+  - tar xvzf fforge.tar.gz
+  - wget https://github.com/felipesanches/FontForge-Debian-Packaging/raw/gh-pages/local_lib.tar.gz
+  - tar xvzf local_lib.tar.gz
+  - sudo mkdir -p /usr/lib
+  - sudo mv local_lib/* /usr/lib/
 
 script:
-  - export PYTHONPATH=$(PYTHONPATH):/usr/lib/python3.6/site-packages
+  - export PYTHONPATH=/usr/lib/python3.6/site-packages
   - make otf
   - make check
   - export DISABLE=" -x com.google.fonts/check/035" # ftxvalidator
