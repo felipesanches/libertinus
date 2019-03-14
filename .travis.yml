@@ -6,22 +6,23 @@ python:
 #virtualenv:
 #  system_site_packages: true
 
-#addons:
-#  apt:
-#    sources:
-#      - sourceline: 'ppa:fontforge/fontforge'
-#    packages:
-#      - fontforge
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:fontforge/fontforge'
+    packages:
+      - fontforge
 #      - python-fontforge
 
 install:
-#  - pip install fonttools
-#  - pip install https://github.com/doconce/preprocess/archive/master.zip
+  - pip install fonttools
+  - pip install https://github.com/doconce/preprocess/archive/master.zip
   - pip install fontbakery
 
 script:
-#  - make otf
-#  - make check
+  - export PYTHONPATH=$(PYTHONPATH):/usr/lib/python3.6/site-packages
+  - make otf
+  - make check
   - export DISABLE=" -x com.google.fonts/check/035" # ftxvalidator
   - export DISABLE="$DISABLE -x com.google.fonts/check/054" # only applies to TTF fonts
   - export DISABLE="$DISABLE -x com.google.fonts/check/056" # only applies to TTF fonts
